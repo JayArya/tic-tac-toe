@@ -44,9 +44,28 @@ footer {
   cursor: pointer;
 }
 
+.controls span {
+  margin: 3rem;
+}
+
+.turn {
+  outline: 2px solid black;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.not-turn {
+  outline: 2px solid grey;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  opacity: 0.5;
+}
+
 .final-result-modal {
   display: none;
   position: fixed;
+  justify-content: center;
+  align-items: center;
   z-index: 1;
   left: 0;
   top: 0;
@@ -62,8 +81,8 @@ footer {
   padding: 20px;
   border: 2px solid grey;
   border-radius: 8px;
-  width: 25%;
-  height: 20%;
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;

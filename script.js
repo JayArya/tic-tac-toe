@@ -1,10 +1,14 @@
+const xControl = document.getElementById("x-control");
+const oControl = document.getElementById("o-control");
 const finalResultModal = document.querySelector(".final-result-modal");
+
 let moveCounter = 0;
 const Gameboard = (() => {
   const gameboard = [];
   for (let i = 0; i < 9; i++) {
     gameboard[i] = i;
   }
+
   let winner = null;
 
   const resetBoard = () => {
@@ -14,7 +18,6 @@ const Gameboard = (() => {
     }
     winner = null;
   };
-  // resetBoard();
 
   const checkResult = () => {
     if (gameboard[0] === gameboard[3] && gameboard[0] === gameboard[6])
@@ -34,6 +37,7 @@ const Gameboard = (() => {
     else if (gameboard[2] === gameboard[4] && gameboard[2] === gameboard[6])
       winner = gameboard[2];
   };
+
   const updateBoard = (index, symbol) => {
     if (
       gameboard[index] === "X" ||
@@ -82,8 +86,16 @@ for (let i = 0; i < 9; i++) {
     if (moveCounter < 9) {
       if (moveCounter % 2 === 0) {
         Gameboard.updateBoard(e.target.dataset.gridCell, "X");
+        xControl.classList.remove("turn");
+        xControl.classList.add("not-turn");
+        oControl.classList.add("turn");
+        oControl.classList.remove("not-turn");
       } else {
         Gameboard.updateBoard(e.target.dataset.gridCell, "O");
+        oControl.classList.remove("turn");
+        oControl.classList.add("not-turn");
+        xControl.classList.add("turn");
+        xControl.classList.remove("not-turn");
       }
     }
   });
