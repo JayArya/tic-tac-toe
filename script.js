@@ -17,6 +17,10 @@ const Gameboard = (() => {
       document.querySelector(`[data-grid-cell="${i}"]`).innerHTML = "";
     }
     winner = null;
+    oControl.classList.remove("turn");
+    oControl.classList.add("not-turn");
+    xControl.classList.add("turn");
+    xControl.classList.remove("not-turn");
   };
 
   const checkResult = () => {
@@ -48,6 +52,7 @@ const Gameboard = (() => {
     } else {
       gameboard[index] = symbol;
       document.querySelector(`[data-grid-cell="${index}"]`).innerHTML = symbol;
+      updateTurns();
       moveCounter++;
       checkResult();
       if (winner !== null) {
@@ -57,6 +62,23 @@ const Gameboard = (() => {
       }
     }
   };
+
+  const updateTurns = () => {
+    if (moveCounter < 9) {
+      if (moveCounter % 2 === 0) {
+        xControl.classList.remove("turn");
+        xControl.classList.add("not-turn");
+        oControl.classList.add("turn");
+        oControl.classList.remove("not-turn");
+      } else {
+        oControl.classList.remove("turn");
+        oControl.classList.add("not-turn");
+        xControl.classList.add("turn");
+        xControl.classList.remove("not-turn");
+      }
+    }
+  };
+
   return { winner, resetBoard, updateBoard };
 })();
 
@@ -86,16 +108,8 @@ for (let i = 0; i < 9; i++) {
     if (moveCounter < 9) {
       if (moveCounter % 2 === 0) {
         Gameboard.updateBoard(e.target.dataset.gridCell, "X");
-        xControl.classList.remove("turn");
-        xControl.classList.add("not-turn");
-        oControl.classList.add("turn");
-        oControl.classList.remove("not-turn");
       } else {
         Gameboard.updateBoard(e.target.dataset.gridCell, "O");
-        oControl.classList.remove("turn");
-        oControl.classList.add("not-turn");
-        xControl.classList.add("turn");
-        xControl.classList.remove("not-turn");
       }
     }
   });
