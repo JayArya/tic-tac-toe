@@ -59,6 +59,10 @@ const Gameboard = (() => {
         const finalResult = document.querySelector(".final-result");
         finalResult.textContent = `${winner} wins 🎉`;
         finalResultModal.style.display = "flex";
+      } else if (moveCounter == 9 && winner === null) {
+        const finalResult = document.querySelector(".final-result");
+        finalResult.textContent = `It's a Tie ❗❗❗`;
+        finalResultModal.style.display = "flex";
       }
     }
   };
